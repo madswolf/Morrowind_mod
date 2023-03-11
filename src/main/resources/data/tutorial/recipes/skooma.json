@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WRW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "tutorial:moonsugar"
+    },
+    "R": {
+      "item": "minecraft:glass_bottle"
+    }
+  },
+  "result": {
+    "item": "tutorial:skooma",
+    "count": 1
+  }
+}
+

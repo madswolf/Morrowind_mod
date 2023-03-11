@@ -3,6 +3,11 @@
     "sounds": [
       "tutorial:skooma_sound"
     ]
+  },
+  "moonsugar_sound": {
+    "sounds": [
+      "tutorial:moonsugar_sound"
+    ]
   }
 }
 

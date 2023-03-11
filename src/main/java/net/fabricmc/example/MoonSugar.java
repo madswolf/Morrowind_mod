@@ -1,17 +1,13 @@
 package net.fabricmc.example;
 
+
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
-import net.minecraft.item.PotionItem;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -24,9 +20,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class Skooma extends Item {
+public class MoonSugar extends Item {
 
-    public Skooma(Settings settings) {
+    public MoonSugar(Settings settings) {
         super(settings);
     }
 
@@ -37,7 +33,7 @@ public class Skooma extends Item {
     }
     @Override
     public SoundEvent getEatSound(){
-        return ExampleMod.SKOOMA_SOUND;
+        return ExampleMod.MOONSUGAR_SOUND;
     }
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -46,21 +42,21 @@ public class Skooma extends Item {
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
-        return UseAction.DRINK;
+        return UseAction.EAT;
     }
 
     @Override
     public SoundEvent getDrinkSound() {
-        return ExampleMod.SKOOMA_SOUND;
+        return ExampleMod.MOONSUGAR_SOUND;
     }
 
     @Override
     public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 
         // default white text
-        tooltip.add(new TranslatableText("item.tutorial.skooma.tooltip"));
+        tooltip.add(new TranslatableText("item.tutorial.moonsugar.tooltip"));
 
         // formatted red text
-        tooltip.add(new TranslatableText("item.tutorial.skooma.tooltip.red").formatted(Formatting.RED));
+        tooltip.add(new TranslatableText("item.tutorial.moonsugar.tooltip.red").formatted(Formatting.RED));
     }
 }
