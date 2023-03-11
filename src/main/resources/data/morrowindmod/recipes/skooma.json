@@ -7,14 +7,14 @@
   ],
   "key": {
     "W": {
-      "item": "tutorial:moonsugar"
+      "item": "morrowindmod:moonsugar"
     },
     "R": {
       "item": "minecraft:glass_bottle"
     }
   },
   "result": {
-    "item": "tutorial:skooma",
+    "item": "morrowindmod:skooma",
     "count": 1
   }
 }

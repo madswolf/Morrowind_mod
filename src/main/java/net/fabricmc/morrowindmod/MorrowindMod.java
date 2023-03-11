@@ -1,4 +1,4 @@
-package net.fabricmc.example;
+package net.fabricmc.morrowindmod;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -13,16 +13,16 @@ import net.minecraft.util.registry.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ExampleMod implements ModInitializer {
+public class MorrowindMod implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
-	public static final Logger LOGGER = LoggerFactory.getLogger("modid");
+	public static final Logger LOGGER = LoggerFactory.getLogger(net.fabricmc.morrowindmod.MorrowindMod.MOD_ID);
 
-	public static final String ModName = "tutorial";
+	public static final String MOD_ID = "morrowindmod";
 	// an instance of our new item
 	public static final Item CUSTOM_ITEM =
-			Registry.register(Registry.ITEM, new Identifier(ModName, "dank_kush"),
+			Registry.register(Registry.ITEM, new Identifier(MOD_ID, "dank_kush"),
 					new Item(new FabricItemSettings()));
 
 
@@ -34,7 +34,7 @@ public class ExampleMod implements ModInitializer {
 			.statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200), 100)
 			.statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200), 100)
 			.build();
-	public static final Item SKOOMA = Registry.register(Registry.ITEM, new Identifier(ModName, "skooma"),
+	public static final Item SKOOMA = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "skooma"),
 			new Skooma(new FabricItemSettings().maxCount(16).food(SKOOMA_FOODCOMPONENT).rarity(Rarity.EPIC)));
 
 	public static final FoodComponent MOONSUGAR_FOODCOMPONENT = new FoodComponent.Builder()
@@ -44,13 +44,13 @@ public class ExampleMod implements ModInitializer {
 			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200), 100)
 			.statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 30), 100)
 			.build();
-	public static final Item MOONSUGAR = Registry.register(Registry.ITEM, new Identifier(ModName, "moonsugar"),
+	public static final Item MOONSUGAR = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "moonsugar"),
 			new MoonSugar(new FabricItemSettings().food(MOONSUGAR_FOODCOMPONENT).rarity(Rarity.UNCOMMON)));
-	public static final Identifier SKOOMA_SOUND_ID = new Identifier(ModName, "skooma_sound");
-	public static final Identifier MOONSUGAR_SOUND_ID = new Identifier(ModName, "moonsugar_sound");
-	public static final SoundEvent SKOOMA_SOUND = Registry.register(Registry.SOUND_EVENT, ExampleMod.SKOOMA_SOUND_ID, new SoundEvent(SKOOMA_SOUND_ID));
+	public static final Identifier SKOOMA_SOUND_ID = new Identifier(MOD_ID, "skooma_sound");
+	public static final Identifier MOONSUGAR_SOUND_ID = new Identifier(MOD_ID, "moonsugar_sound");
+	public static final SoundEvent SKOOMA_SOUND = Registry.register(Registry.SOUND_EVENT, net.fabricmc.morrowindmod.MorrowindMod.SKOOMA_SOUND_ID, new SoundEvent(SKOOMA_SOUND_ID));
 
-	public static final SoundEvent MOONSUGAR_SOUND = Registry.register(Registry.SOUND_EVENT, ExampleMod.MOONSUGAR_SOUND_ID, new SoundEvent(MOONSUGAR_SOUND_ID));
+	public static final SoundEvent MOONSUGAR_SOUND = Registry.register(Registry.SOUND_EVENT, net.fabricmc.morrowindmod.MorrowindMod.MOONSUGAR_SOUND_ID, new SoundEvent(MOONSUGAR_SOUND_ID));
 
 	//private static final ItemGroup ITEM_GROUP = FabricItemGroup.builder(new Identifier(ModName, String.format("%1$s_group",ModName)))
 	//		.icon(() -> new ItemStack(SKOOMA))

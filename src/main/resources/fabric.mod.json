@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "morrowindmod",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Morrowind Mod",
+  "description": "A super cool mod that adds items from Morrowind",
   "authors": [
-    "Me!"
+    "MadsWJespersen"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/MadsWJespersen/Morrowind_mod",
+      "sources": "https://github.com/MadsWJespersen/Morrowind_mod"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/morrowindmod/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.fabricmc.morrowindmod.MorrowindMod"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "morrowindmod.mixins.json"
   ],
 
   "depends": {

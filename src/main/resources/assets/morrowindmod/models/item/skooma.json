@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "tutorial:item/skooma"
+    "layer0": "morrowindmod:item/skooma"
   }
 }

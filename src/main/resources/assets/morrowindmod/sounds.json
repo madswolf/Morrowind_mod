@@ -1,12 +1,12 @@
 {
   "skooma_sound": {
     "sounds": [
-      "tutorial:skooma_sound"
+      "morrowindmod:skooma_sound"
     ]
   },
   "moonsugar_sound": {
     "sounds": [
-      "tutorial:moonsugar_sound"
+      "morrowindmod:moonsugar_sound"
     ]
   }
 }

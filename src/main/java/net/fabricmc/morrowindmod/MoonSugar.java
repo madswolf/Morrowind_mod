@@ -1,17 +1,12 @@
-package net.fabricmc.example;
+package net.fabricmc.morrowindmod;
+
 
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
-import net.minecraft.item.PotionItem;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -19,25 +14,20 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class Skooma extends Item {
+public class MoonSugar extends Item {
 
-    public Skooma(Settings settings) {
+    public MoonSugar(Settings settings) {
         super(settings);
     }
-
-    public static final Logger LOGGER = LoggerFactory.getLogger("modid");
-
     public int getMaxUseTime(ItemStack stack) {
         return 40;
     }
     @Override
     public SoundEvent getEatSound(){
-        return ExampleMod.SKOOMA_SOUND;
+        return net.fabricmc.morrowindmod.MorrowindMod.MOONSUGAR_SOUND;
     }
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -46,21 +36,21 @@ public class Skooma extends Item {
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
-        return UseAction.DRINK;
+        return UseAction.EAT;
     }
 
     @Override
     public SoundEvent getDrinkSound() {
-        return ExampleMod.SKOOMA_SOUND;
+        return net.fabricmc.morrowindmod.MorrowindMod.MOONSUGAR_SOUND;
     }
 
     @Override
     public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 
         // default white text
-        tooltip.add(new TranslatableText("item.tutorial.skooma.tooltip"));
+        tooltip.add(new TranslatableText(String.format("item.%s.moonsugar.tooltip", net.fabricmc.morrowindmod.MorrowindMod.MOD_ID)));
 
         // formatted red text
-        tooltip.add(new TranslatableText("item.tutorial.skooma.tooltip.red").formatted(Formatting.RED));
+        tooltip.add(new TranslatableText(String.format("item.%s.moonsugar.tooltip.red", net.fabricmc.morrowindmod.MorrowindMod.MOD_ID).formatted(Formatting.RED)));
     }
 }
