@@ -28,7 +28,7 @@ public class MorrowindMod implements ModInitializer {
 
 	public static final FoodComponent SKOOMA_FOODCOMPONENT = new FoodComponent.Builder()
 			.hunger(-4)
-			.saturationModifier(-10)
+			.saturationModifier(0.6F)
 			.alwaysEdible()
 			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200), 100)
 			.statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200), 100)
@@ -39,7 +39,7 @@ public class MorrowindMod implements ModInitializer {
 
 	public static final FoodComponent MOONSUGAR_FOODCOMPONENT = new FoodComponent.Builder()
 			.hunger(-20)
-			.saturationModifier(-20)
+			.saturationModifier(0.8F)
 			.alwaysEdible()
 			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200), 100)
 			.statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 30), 100)
