@@ -66,6 +66,16 @@ public class MorrowindMod implements ModInitializer {
 			MOONSHINECOLLECTOR_BLOCK_ENTITY_ID,
 			FabricBlockEntityTypeBuilder.create(MoonShineCollectorEntity::new, MOONSHINECOLLECTOR).build()
 	);
+
+	public static final Identifier MOONDROP_ID = new Identifier(MOD_ID, "moondrop");
+
+	public static final Item MOONDROP = Registry.register(Registry.ITEM, MOONDROP_ID,
+			new Item(new FabricItemSettings().group(MORROWIND_ITEMGROUP).maxCount(1).rarity(Rarity.UNCOMMON)));
+
+	public static final Identifier MOONSEED_ID = new Identifier(MOD_ID, "moonseed");
+
+	public static final Item MOONSEED = Registry.register(Registry.ITEM, MOONSEED_ID,
+			new Item(new FabricItemSettings().group(MORROWIND_ITEMGROUP).maxCount(1).rarity(Rarity.UNCOMMON)));
 	@Override
 	public void onInitialize() {
 	}

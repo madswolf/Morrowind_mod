@@ -20,7 +20,6 @@ public class MoonshineCollector extends BlockWithEntity implements BlockEntityPr
     }
     @Override
     public BlockRenderType getRenderType(BlockState state) {
-        // With inheriting from BlockWithEntity this defaults to INVISIBLE, so we need to change that!
         return BlockRenderType.MODEL;
     }
     @Override
@@ -39,16 +38,9 @@ public class MoonshineCollector extends BlockWithEntity implements BlockEntityPr
         if (world.isClient) return ActionResult.SUCCESS;
         Inventory blockEntity = (Inventory) world.getBlockEntity(blockPos);
 
-        MorrowindMod.LOGGER.info(blockEntity.getStack(0).getItem().toString());
-
         if (player.getStackInHand(hand).isEmpty()) {
-            // If the player is not holding anything we'll get give him the items in the block entity one by one
-            MorrowindMod.LOGGER.info("Hand empty");
-            // Find the first slot that has an item and give it to the player
             if (!blockEntity.getStack(0).isEmpty()) {
-                // Give the player the stack in the inventory
                 player.getInventory().offerOrDrop(blockEntity.getStack(0));
-                // Remove the stack from the inventory
                 blockEntity.removeStack(0);
             }
         }

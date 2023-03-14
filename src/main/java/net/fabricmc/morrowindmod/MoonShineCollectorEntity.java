@@ -49,7 +49,7 @@ public class MoonShineCollectorEntity extends BlockEntity implements Implemented
         if(be.number >= be.productionTime){
             ItemStack stack = be.getStack(0);
             if(stack.isEmpty()){
-                stack = new ItemStack(MorrowindMod.MOONSUGAR);
+                stack = new ItemStack(MorrowindMod.MOONDROP);
             } else {
                 stack.increment(1);
             }

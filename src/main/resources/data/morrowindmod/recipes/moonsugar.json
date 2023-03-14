@@ -1,13 +1,18 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WRW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
       "item": "minecraft:sugar"
     },
-    {
-      "item": "minecraft:lapis_lazuli"
+    "R": {
+      "item": "morrowindmod:moonseed"
     }
-  ],
+  },
   "result": {
     "item": "morrowindmod:moonsugar",
     "count": 1
