@@ -5,14 +5,14 @@ import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -24,6 +24,7 @@ public class MorrowindMod implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger(net.fabricmc.morrowindmod.MorrowindMod.MOD_ID);
 	public static final String MOD_ID = "morrowindmod";
 
+	public static final ScreenHandlerType<MoonShineCollectorScreenHandler> BOX_SCREEN_HANDLER;
 	private static final ItemGroup MORROWIND_ITEMGROUP = FabricItemGroupBuilder.create(new Identifier(MOD_ID, String.format("%1$s_group", MOD_ID)))
 			.icon(() -> new ItemStack(Blocks.AMETHYST_BLOCK))
 			.build();
@@ -56,7 +57,7 @@ public class MorrowindMod implements ModInitializer {
 	public static final Identifier MOONSHINECOLLECTOR_ID = new Identifier(MOD_ID, "moonshinecollector");
 
 
-	public static final Block MOONSHINECOLLECTOR = Registry.register(Registry.BLOCK, MOONSHINECOLLECTOR_ID, new MoonshineCollector(FabricBlockSettings.of(Material.AMETHYST).strength(1.0f)));
+	public static final Block MOONSHINECOLLECTOR = Registry.register(Registry.BLOCK, MOONSHINECOLLECTOR_ID, new MoonshineCollector(FabricBlockSettings.copyOf(Blocks.CHEST).strength(1.0f)));
 
 	public static final Item MOONSHINECOLLECTOR_ITEM = Registry.register(Registry.ITEM, MOONSHINECOLLECTOR_ID, new BlockItem(MOONSHINECOLLECTOR, new FabricItemSettings().group(MORROWIND_ITEMGROUP)));
 
@@ -76,6 +77,11 @@ public class MorrowindMod implements ModInitializer {
 
 	public static final Item MOONSEED = Registry.register(Registry.ITEM, MOONSEED_ID,
 			new Item(new FabricItemSettings().group(MORROWIND_ITEMGROUP).maxCount(1).rarity(Rarity.UNCOMMON)));
+
+	static {
+		BOX_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(MOONSHINECOLLECTOR_ID, MoonShineCollectorScreenHandler::new);
+	}
+
 	@Override
 	public void onInitialize() {
 	}

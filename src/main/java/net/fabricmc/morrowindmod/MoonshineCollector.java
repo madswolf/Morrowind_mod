@@ -6,8 +6,11 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -34,16 +37,41 @@ public class MoonshineCollector extends BlockWithEntity implements BlockEntityPr
     }
 
     @Override
-    public ActionResult onUse(BlockState blockState, World world, BlockPos blockPos, PlayerEntity player, Hand hand, BlockHitResult blockHitResult) {
-        if (world.isClient) return ActionResult.SUCCESS;
-        Inventory blockEntity = (Inventory) world.getBlockEntity(blockPos);
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (!world.isClient) {
+            //This will call the createScreenHandlerFactory method from BlockWithEntity, which will return our blockEntity casted to
+            //a namedScreenHandlerFactory. If your block class does not extend BlockWithEntity, it needs to implement createScreenHandlerFactory.
+            NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
 
-        if (player.getStackInHand(hand).isEmpty()) {
-            if (!blockEntity.getStack(0).isEmpty()) {
-                player.getInventory().offerOrDrop(blockEntity.getStack(0));
-                blockEntity.removeStack(0);
+            if (screenHandlerFactory != null) {
+                //With this call the server will request the client to open the appropriate Screenhandler
+                player.openHandledScreen(screenHandlerFactory);
             }
         }
         return ActionResult.SUCCESS;
+    }
+
+    //This method will drop all items onto the ground when the block is broken
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof MoonShineCollectorEntity) {
+                ItemScatterer.spawn(world, pos, (MoonShineCollectorEntity)blockEntity);
+                // update comparators
+                world.updateComparators(pos,this);
+            }
+            super.onStateReplaced(state, world, pos, newState, moved);
+        }
+    }
+
+    @Override
+    public boolean hasComparatorOutput(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+        return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
     }
 }

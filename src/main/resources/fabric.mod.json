@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "net.fabricmc.morrowindmod.MorrowindMod"
+    ],
+    "client": [
+      "net.fabricmc.morrowindmod.MorrowindClientMod"
     ]
   },
   "mixins": [
