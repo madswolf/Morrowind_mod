@@ -8,9 +8,11 @@ import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityT
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.FluidBlock;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.item.*;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.sound.SoundEvent;
@@ -81,6 +83,13 @@ public class MorrowindMod implements ModInitializer {
 	static {
 		BOX_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(MOONSHINECOLLECTOR_ID, MoonShineCollectorScreenHandler::new);
 	}
+
+	public static FlowableFluid STILL_MOONSHINE = Registry.register(Registry.FLUID, new Identifier(MOD_ID, "moonshine"), new MoonShineFluid.Still());
+	public static FlowableFluid FLOWING_MOONSHINE = Registry.register(Registry.FLUID, new Identifier(MOD_ID, "flowing_moonshine"), new MoonShineFluid.Flowing());
+	public static Item MOONSHINE_BUCKET =  Registry.register(Registry.ITEM, new Identifier(MOD_ID, "moonshine_bucket"),
+			new BucketItem(STILL_MOONSHINE, new Item.Settings().group(MORROWIND_ITEMGROUP).recipeRemainder(Items.BUCKET).maxCount(1)));
+
+	public static Block MOONSHINE = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "moonshine"), new FluidBlock(STILL_MOONSHINE, FabricBlockSettings.copy(Blocks.WATER)));
 
 	@Override
 	public void onInitialize() {
